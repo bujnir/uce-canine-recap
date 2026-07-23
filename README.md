@@ -92,8 +92,9 @@ python scripts/canonical_markers.py   # literature-marker panel + heatmap
 python scripts/build_benchmark.py     # comparison figure
 ```
 
-The **canine ESM-2 protein embeddings we generated** (20,257 genes × 5120-d, ~201 MB) are released separately —
-see [`data/DATA.md`](data/DATA.md). All other artifacts are regenerable from the sources in
+The **canine ESM-2 protein embeddings we generated** (20,257 genes × 5120-d, ~201 MB) are released on
+Hugging Face: **https://huggingface.co/datasets/bujnir/dog-esm2-15b-embeddings** (loader in
+[`data/DATA.md`](data/DATA.md)). All other artifacts are regenerable from the sources in
 [`RESOURCES.md`](RESOURCES.md).
 
 ## Resources & data
