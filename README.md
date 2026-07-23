@@ -3,42 +3,13 @@
 Reproducing the **Universal Cell Embeddings (UCE)** "add a new species" use case on a **dog** immune
 atlas, then benchmarking it honestly against conventional annotation tools.
 
-> A learning project for the **AI Engineering program at the Hebrew University of Jerusalem**, motivated by
-> a longer-term interest in **disease modeling in companion animals** — building the groundwork for bringing
-> modern biologic-drug thinking to cats and dogs.
-
-<p align="center">
-  <img src="figures/model_schematic.png" width="88%">
-</p>
-
----
-
 ## TL;DR
 
 - Added **dog** to UCE as a brand-new species from its proteome alone — **no cell-type labels, no gene-symbol matching** — and embedded 93,011 canine immune cells.
 - Annotated them zero-shot by dropping them onto the **authors' own Tabula Sapiens UCE map**: **0.84 accuracy** across immune lineages (neutrophil recall **1.00**).
 - Benchmarked against conventional tools. The honest result: **UCE is competitive, not dominant** — a SingleR-style correlation on the same reference reaches **0.90**. UCE's real edge is **representational** (no ortholog mapping, works reference-free, one model per all species).
 
-<p align="center">
-  <img src="figures/benchmark_comparison.png" width="70%">
-</p>
-
 ---
-
-## The model (what UCE does)
-
-UCE represents each **gene by the ESM-2 embedding of its protein**, feeds the expressed genes of a cell
-(sampled by expression, ordered by chromosome, plus a `[CLS]` token) through a **33-layer, 650M-parameter
-transformer** trained self-supervised, and reads out a **1280-d cell embedding** from `[CLS]`.
-
-Because genes are keyed by protein rather than by symbol, **a new species only needs its proteome** — which
-is exactly what makes the dog experiment possible.
-
-<p align="center">
-  <img src="figures/uce_figure1_original.png" width="92%">
-</p>
-
-<sub>Figure 1 from Rosen, Y. et al. <em>Universal cell embedding provides a foundation model for cell biology</em>, <strong>Nature</strong> (2026), <a href="https://doi.org/10.1038/s41586-026-10689-z">doi:10.1038/s41586-026-10689-z</a>. © The authors, licensed under <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> — reproduced unmodified. This figure is <strong>not</strong> covered by this repository's MIT license (see <a href="ATTRIBUTION.md">ATTRIBUTION.md</a>). The <code>figures/model_schematic.png</code> above is our own simplified redraw. Repo: <a href="https://github.com/snap-stanford/UCE">snap-stanford/UCE</a>.</sub>
 
 ## The workflow (what we did)
 
@@ -70,6 +41,10 @@ is exactly what makes the dog experiment possible.
 | Expression logistic-regression — same TS ref | 0.697 | 0.518 | conventional |
 | CellTypist (off-the-shelf human immune) | 0.606 | 0.392 | conventional |
 
+<p align="center">
+  <img src="figures/benchmark_comparison.png" width="70%">
+</p>
+
 Read the numbers as: with a good reference *and* ortholog mapping, a plain correlation method beats UCE
 here. UCE's value is that it needs **no ortholog/gene-symbol mapping** (it embeds proteins, so dog genes
 with no human symbol still contribute), it works **reference-free** (intrinsic kNN label purity **0.88**),
@@ -82,6 +57,21 @@ neutrophils and loses genes to cross-species symbol mismatch.
 </p>
 
 More figures in [`figures/`](figures/); metrics/tables in [`results/`](results/).
+
+## The model (what UCE does)
+
+UCE represents each **gene by the ESM-2 embedding of its protein**, feeds the expressed genes of a cell
+(sampled by expression, ordered by chromosome, plus a `[CLS]` token) through a **33-layer, 650M-parameter
+transformer** trained self-supervised, and reads out a **1280-d cell embedding** from `[CLS]`.
+
+Because genes are keyed by protein rather than by symbol, **a new species only needs its proteome** — which
+is exactly what makes the dog experiment possible.
+
+<p align="center">
+  <img src="figures/uce_figure1_original.png" width="92%">
+</p>
+
+<sub>Figure 1 from Rosen, Y. et al. <em>Universal cell embedding provides a foundation model for cell biology</em>, <strong>Nature</strong> (2026), <a href="https://doi.org/10.1038/s41586-026-10689-z">doi:10.1038/s41586-026-10689-z</a>. © The authors, licensed under <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> — reproduced unmodified. This figure is <strong>not</strong> covered by this repository's MIT license (see <a href="ATTRIBUTION.md">ATTRIBUTION.md</a>). A simplified redraw is in <code>figures/model_schematic.png</code>. Repo: <a href="https://github.com/snap-stanford/UCE">snap-stanford/UCE</a>.</sub>
 
 ## Reproduce
 
@@ -113,7 +103,7 @@ ESM-2, UCE, Zenodo, CZ CELLxGENE, CellTypist, RunPod) and the Ammons et al. 2023
 
 ## Acknowledgements & citations
 
-- UCE — Rosen et al., *Universal Cell Embeddings: A Foundation Model for Cell Biology*. https://github.com/snap-stanford/UCE
+- UCE — Rosen et al., *Universal cell embedding provides a foundation model for cell biology*, Nature (2026). https://doi.org/10.1038/s41586-026-10689-z · https://github.com/snap-stanford/UCE
 - Dog atlas — Ammons et al. 2023, *A single-cell RNA sequencing atlas of circulating leukocytes from healthy and osteosarcoma affected dogs*, Front. Immunol. https://doi.org/10.3389/fimmu.2023.1162700
 - ESM-2 — Lin et al., *Evolutionary-scale prediction of atomic-level protein structure with a language model*.
 
