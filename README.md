@@ -43,8 +43,10 @@ is exactly what makes the dog experiment possible.
 ## The workflow (what we did)
 
 <p align="center">
-  <img src="figures/workflow_schematic.png" width="92%">
+  <img src="figures/workflow_illustration.png" width="95%">
 </p>
+
+<sub>Original illustration made for this project. A precise, text-exact diagram of the same pipeline is in <a href="figures/workflow_schematic.png"><code>figures/workflow_schematic.png</code></a>.</sub>
 
 | # | Step | Why | How |
 |---|------|-----|-----|
