@@ -1,11 +1,11 @@
 # UCE Canine Recap — zero-shot cell-type annotation of a new species
 
-Reproducing the **Universal Cell Embeddings (UCE)** "add a new species" use case on a **dog** immune
+Reproducing the **Universal Cell Embeddings (UCE)** "add a new species" use case on a **canine** immune
 atlas, then benchmarking it honestly against conventional annotation tools.
 
 ## TL;DR
 
-- Added **dog** to UCE as a brand-new species from its proteome alone — **no cell-type labels, no gene-symbol matching** — and embedded 93,011 canine immune cells.
+- Added **canine** to UCE as a brand-new species from its proteome alone — **no cell-type labels, no gene-symbol matching** — and embedded 93,011 canine immune cells.
 - Annotated them zero-shot by dropping them onto the **authors' own Tabula Sapiens UCE map**: **0.84 accuracy** across immune lineages (neutrophil recall **1.00**).
 - Benchmarked against conventional tools. The honest result: **UCE is competitive, not dominant** — a SingleR-style correlation on the same reference reaches **0.90**. UCE's real edge is **representational** (no ortholog mapping, works reference-free, one model per all species).
 
@@ -21,10 +21,10 @@ atlas, then benchmarking it honestly against conventional annotation tools.
 
 | # | Step | Why | How |
 |---|------|-----|-----|
-| 1 | Dog proteome | UCE keys genes by protein | Parse Ensembl CanFam3.1 peptides, longest per gene (20,257) — `scripts/01_parse_proteome.py` |
+| 1 | Canine proteome | UCE keys genes by protein | Parse Ensembl CanFam3.1 peptides, longest per gene (20,257) — `scripts/01_parse_proteome.py` |
 | 2 | ESM-2 15B embeddings | UCE needs 5120-d ESM-2 embeddings | `esm2_t48_15B_UR50D` on GPU, mean-pool — `scripts/embed_esm2.py` |
-| 3 | Add dog as a species | UCE needs per-species token/chrom/offset files | `scripts/build_newspecies.py` |
-| 4 | Dog scRNA h5ad | UCE input = raw counts keyed to genes | GEO raw → ENSCAFG-keyed AnnData — `scripts/build_dog_h5ad_enscafg.py` |
+| 3 | Add canine as a species | UCE needs per-species token/chrom/offset files | `scripts/build_newspecies.py` |
+| 4 | Canine scRNA h5ad | UCE input = raw counts keyed to genes | GEO raw → ENSCAFG-keyed AnnData — `scripts/build_dog_h5ad_enscafg.py` |
 | 5 | UCE inference | Produce cell embeddings | UCE 33-layer on GPU → 93,011×1280 — `scripts/deploy_uce.py`, `extract_uce.py` |
 | 6 | Labelled reference | Model outputs an embedding, not a label | Authors' own TS UCE map + cell-ID label join — `scripts/fetch_member1.py`, `eval_ima.py` |
 | 7 | Evaluate | Separate "good embedding?" from "transfer works?" | Intrinsic / authors'-map / baselines |
@@ -46,7 +46,7 @@ atlas, then benchmarking it honestly against conventional annotation tools.
 </p>
 
 Read the numbers as: with a good reference *and* ortholog mapping, a plain correlation method beats UCE
-here. UCE's value is that it needs **no ortholog/gene-symbol mapping** (it embeds proteins, so dog genes
+here. UCE's value is that it needs **no ortholog/gene-symbol mapping** (it embeds proteins, so canine genes
 with no human symbol still contribute), it works **reference-free** (intrinsic kNN label purity **0.88**),
 and it's **one model across all species**. CellTypist is weakest (0.61) because its PBMC-trained model has no
 neutrophils and loses genes to cross-species symbol mismatch.
@@ -65,7 +65,7 @@ UCE represents each **gene by the ESM-2 embedding of its protein**, feeds the ex
 transformer** trained self-supervised, and reads out a **1280-d cell embedding** from `[CLS]`.
 
 Because genes are keyed by protein rather than by symbol, **a new species only needs its proteome** — which
-is exactly what makes the dog experiment possible.
+is exactly what makes the canine experiment possible.
 
 <p align="center">
   <img src="figures/uce_figure1_original.png" width="92%">
@@ -81,9 +81,9 @@ pip install -r requirements.txt
 python scripts/01_parse_proteome.py --fasta <Ensembl_CanFam3.1_pep.fa.gz> --outdir .
 # 2. ESM-2 15B protein embeddings (GPU; or download ours, see data/DATA.md)
 python scripts/embed_esm2.py --fasta dog_longest.pep.fa --out dog_esm2_embeddings.pt
-# 3. add dog as a new UCE species
+# 3. add canine as a new UCE species
 python scripts/build_newspecies.py --pe dog_esm2_embeddings.pt --gene-table dog_gene_table.csv --outdir model_files
-# 4-5. build dog h5ad + run UCE  (see scripts/deploy_uce.py for the GPU pipeline)
+# 4-5. build canine h5ad + run UCE  (see scripts/deploy_uce.py for the GPU pipeline)
 # 6-8. evaluation + baselines
 python scripts/eval_ima.py            # authors'-map zero-shot annotation
 python scripts/celltypist_baseline.py # CellTypist baseline
@@ -92,7 +92,7 @@ python scripts/canonical_markers.py   # literature-marker panel + heatmap
 python scripts/build_benchmark.py     # comparison figure
 ```
 
-The **dog ESM-2 protein embeddings we generated** (20,257 genes × 5120-d, ~201 MB) are released separately —
+The **canine ESM-2 protein embeddings we generated** (20,257 genes × 5120-d, ~201 MB) are released separately —
 see [`data/DATA.md`](data/DATA.md). All other artifacts are regenerable from the sources in
 [`RESOURCES.md`](RESOURCES.md).
 
@@ -104,7 +104,7 @@ ESM-2, UCE, Zenodo, CZ CELLxGENE, CellTypist, RunPod) and the Ammons et al. 2023
 ## Acknowledgements & citations
 
 - UCE — Rosen et al., *Universal cell embedding provides a foundation model for cell biology*, Nature (2026). https://doi.org/10.1038/s41586-026-10689-z · https://github.com/snap-stanford/UCE
-- Dog atlas — Ammons et al. 2023, *A single-cell RNA sequencing atlas of circulating leukocytes from healthy and osteosarcoma affected dogs*, Front. Immunol. https://doi.org/10.3389/fimmu.2023.1162700
+- Canine atlas — Ammons et al. 2023, *A single-cell RNA sequencing atlas of circulating leukocytes from healthy and osteosarcoma affected dogs*, Front. Immunol. https://doi.org/10.3389/fimmu.2023.1162700
 - ESM-2 — Lin et al., *Evolutionary-scale prediction of atomic-level protein structure with a language model*.
 
 ## License
