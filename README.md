@@ -32,8 +32,13 @@ UCE represents each **gene by the ESM-2 embedding of its protein**, feeds the ex
 transformer** trained self-supervised, and reads out a **1280-d cell embedding** from `[CLS]`.
 
 Because genes are keyed by protein rather than by symbol, **a new species only needs its proteome** — which
-is exactly what makes the dog experiment possible. Paper: Rosen et al., *Universal Cell Embeddings*
-([code](https://github.com/snap-stanford/UCE)).
+is exactly what makes the dog experiment possible.
+
+<p align="center">
+  <img src="figures/uce_figure1_original.png" width="92%">
+</p>
+
+<sub>Figure 1 from Rosen, Y. et al. <em>Universal cell embedding provides a foundation model for cell biology</em>, <strong>Nature</strong> (2026), <a href="https://doi.org/10.1038/s41586-026-10689-z">doi:10.1038/s41586-026-10689-z</a>. © The authors, licensed under <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> — reproduced unmodified. This figure is <strong>not</strong> covered by this repository's MIT license (see <a href="ATTRIBUTION.md">ATTRIBUTION.md</a>). The <code>figures/model_schematic.png</code> above is our own simplified redraw. Repo: <a href="https://github.com/snap-stanford/UCE">snap-stanford/UCE</a>.</sub>
 
 ## The workflow (what we did)
 
