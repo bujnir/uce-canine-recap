@@ -1,0 +1,11 @@
+*.pt
+*.h5ad
+*.npy
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+model_files/
+uce_out/
+data/*.tar
+data/*.fa
+data/*.fa.gz

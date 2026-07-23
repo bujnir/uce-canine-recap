@@ -1,0 +1,33 @@
+{
+ "Immune_All_Low": {
+  "acc": 0.606,
+  "macroF1": 0.392,
+  "evaluable": 69520,
+  "recall": {
+   "CD8/NK cell": 0.67,
+   "Neutrophil": 0.0,
+   "CD4 T cell": 0.53,
+   "B cell": 0.92,
+   "Monocyte": 0.84,
+   "DN T cell": 0.02,
+   "DC": 0.36,
+   "gd T cell": 0.02,
+   "Plasma cell": 0.93,
+   "CD34+ Unclassified": 0.04
+  }
+ },
+ "Immune_All_High": {
+  "acc": 0.694,
+  "macroF1": 0.451,
+  "evaluable": 28006,
+  "recall": {
+   "Neutrophil": 0.0,
+   "B cell": 1.0,
+   "Monocyte": 0.87,
+   "DN T cell": 0.0,
+   "DC": 0.6,
+   "Plasma cell": 0.97,
+   "CD34+ Unclassified": 0.08
+  }
+ }
+}

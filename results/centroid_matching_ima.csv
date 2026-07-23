@@ -1,0 +1,13 @@
+dog_celltype,n_dog,nearest_TS,2nd,3rd
+CD8/NK cell,15004,mature NK T cell,"CD8-positive, alpha-beta memory T cell","CD8-positive, alpha-beta T cell"
+Neutrophil,5608,neutrophil,intermediate monocyte,classical monocyte
+CD4 T cell,26013,"CD4-positive, alpha-beta memory T cell","effector CD4-positive, alpha-beta T cell",CD4-positive helper T cell
+B cell,6351,naive B cell,B cell,memory B cell
+Monocyte,13803,monocyte,myeloid cell,classical monocyte
+Granulocyte,2705,neutrophil,mast cell,intermediate monocyte
+DN T cell,842,CD4-positive helper T cell,"naive thymus-derived CD4-positive, alpha-beta T cell",DN3 thymocyte
+DC,627,hematopoietic stem cell,granulocyte,myeloid cell
+gd T cell,497,mast cell,T cell,leukocyte
+Cycling T cell,190,erythroid progenitor cell,"CD8-positive, alpha-beta cytotoxic T cell","CD8-positive, alpha-beta memory T cell"
+Plasma cell,669,plasma cell,pancreatic acinar cell,native cell
+CD34+ Unclassified,106,hepatocyte,hematopoietic stem cell,endothelial cell of hepatic sinusoid

@@ -1,0 +1,16 @@
+numpy
+pandas
+scipy
+scikit-learn
+scanpy
+anndata
+h5py
+matplotlib
+torch
+transformers==4.44.2
+huggingface_hub<0.26
+accelerate>=0.33
+cellxgene-census
+celltypist
+fsspec
+aiohttp

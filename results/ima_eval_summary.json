@@ -1,0 +1,9 @@
+{
+ "ref_cells": 32039,
+ "ref_fine_types": 138,
+ "species_offset": 0.593,
+ "knn_acc": 0.838,
+ "knn_macroF1": 0.708,
+ "centroid_acc": 0.795,
+ "centroid_macroF1": 0.673
+}

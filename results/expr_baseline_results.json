@@ -1,0 +1,17 @@
+{
+ "SingleR-style (Spearman, same TS ref)": {
+  "acc": 0.904,
+  "macroF1": 0.817,
+  "evaluable": 68181,
+  "recall": {
+   "CD8/NK cell": 0.82,
+   "Neutrophil": 0.99,
+   "CD4 T cell": 0.91,
+   "B cell": 1.0,
+   "Monocyte": 0.93,
+   "DC": 0.56,
+   "Plasma cell": 0.98,
+   "CD34+ Unclassified": 0.39
+  }
+ }
+}

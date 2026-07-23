@@ -1,0 +1,37 @@
+{
+ "acc": 0.83,
+ "macroF1": 0.726,
+ "n": 72415,
+ "recall": {
+  "CD4 T cell": 0.8,
+  "CD8/NK cell": 0.72,
+  "gd T cell": 0.81,
+  "DN T cell": 0.64,
+  "Cycling T cell": 0.81,
+  "B cell": 1.0,
+  "Plasma cell": 0.94,
+  "Monocyte": 0.91,
+  "DC": 0.86,
+  "Neutrophil": 0.92,
+  "Granulocyte": 0.83,
+  "CD34+ Unclassified": 0.42
+ },
+ "missing_markers": {
+  "CD4 T cell": [],
+  "CD8/NK cell": [],
+  "gd T cell": [
+   "TRDC"
+  ],
+  "DN T cell": [],
+  "Cycling T cell": [],
+  "B cell": [],
+  "Plasma cell": [],
+  "Monocyte": [
+   "CD14"
+  ],
+  "DC": [],
+  "Neutrophil": [],
+  "Granulocyte": [],
+  "CD34+ Unclassified": []
+ }
+}
